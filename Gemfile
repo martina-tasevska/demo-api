@@ -14,6 +14,9 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'devise'
 gem 'puma', '~> 3.7'
+gem 'apipie-rails'
+gem "pundit"
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'

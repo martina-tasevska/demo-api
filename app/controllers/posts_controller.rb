@@ -2,6 +2,7 @@ class PostsController < ApiController
   before_action :set_post, only: [:show, :update, :destroy]
 
   # GET /posts
+  api :GET, '/posts', "List all posts"
   def index
     @posts = Post.all
 
@@ -9,11 +10,13 @@ class PostsController < ApiController
   end
 
   # GET /posts/1
+  api :GET, '/posts/:id', "Display a specific post with given id"
   def show
     render json: @post
   end
 
   # POST /posts
+  api :POST, '/posts', "Create a new post"
   def create
     @post = Post.new(post_params)
 
@@ -25,6 +28,7 @@ class PostsController < ApiController
   end
 
   # PATCH/PUT /posts/1
+  api :PATCH, '/posts/:id', "Update a specific post with given id"
   def update
     if @post.update(post_params)
       render json: @post
@@ -34,6 +38,7 @@ class PostsController < ApiController
   end
 
   # DELETE /posts/1
+  api :DELETE, '/posts/:id', "Delete a specific post with given id"
   def destroy
     @post.destroy
   end

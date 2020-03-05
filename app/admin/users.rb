@@ -2,6 +2,7 @@ ActiveAdmin.register User do
 
   permit_params :email, :password
   index do
+     column :id
      column :email
      column :created_at
      actions
