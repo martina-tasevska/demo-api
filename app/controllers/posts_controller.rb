@@ -1,25 +1,35 @@
 class PostsController < ApiController
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [ :update, :destroy]
 
-  # GET /posts
-  api :GET, '/posts', "List all posts"
-  def index
-    @posts = Post.all
-
-    render json: @posts
+  def_param_group :post do
+    param :post, Hash, :action_aware => true do
+    param :title, String, :required => true
+    param :description, String, :required => true
+    param :user_id, Integer, :required => true
+    end
   end
 
-  # GET /posts/1
-  api :GET, '/posts/:id', "Display a specific post with given id"
+  api :GET, '/users/:user_id/posts', "List all posts created by user with given id"
+  returns :array_of => :post, :desc => "List of posts"
+  def index
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.order('created_at DESC')
+    render json: { status: 'SUCCESS', messsage:'Loaded posts', data: @posts }
+  end
+
+  api :GET, ' /users/:user_id/posts/:id', "Display a specific post with given id"
+  returns :post, :desc => "Specific post"
   def show
-    render json: @post
+    @post = policy_scope(Post).find(params[:id])
+    render json: { status: 'SUCCESS', messsage:'Loaded post', data: @post }
   end
 
   # POST /posts
-  api :POST, '/posts', "Create a new post"
+  api :POST, '/users/:user_id/posts', "Create post"
+  param_group :post, :as => :create
   def create
     @post = Post.new(post_params)
-
+    authorize @post
     if @post.save
       render json: @post, status: :created, location: @post
     else
@@ -28,7 +38,8 @@ class PostsController < ApiController
   end
 
   # PATCH/PUT /posts/1
-  api :PATCH, '/posts/:id', "Update a specific post with given id"
+  api :PATCH, '/users/:user_id/posts/:id', "Update a specific post with given id"
+  param_group :post, :as => :update
   def update
     if @post.update(post_params)
       render json: @post
@@ -38,19 +49,20 @@ class PostsController < ApiController
   end
 
   # DELETE /posts/1
-  api :DELETE, '/posts/:id', "Delete a specific post with given id"
+  api :DELETE, '/users/:user_id/posts/:id', "Delete a specific post with given id"
   def destroy
     @post.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_post
+    @post = Post.find(params[:id])
+    authorize @post
+  end
 
     # Only allow a trusted parameter "white list" through.
-    def post_params
-      params.require(:post).permit(:title, :description)
-    end
+  def post_params
+    params.require(:post).permit(:title, :description, :user_id)
+  end
 end
