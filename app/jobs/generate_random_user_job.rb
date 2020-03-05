@@ -5,7 +5,7 @@ class GenerateRandomUserJob < ApplicationJob
     post = Post.new
     post.title = Faker::Lorem.word
     post.description = Faker::Lorem.sentence
-    post.user_id = 2
+    post.user_id = 1
     post.save!
   end
 end

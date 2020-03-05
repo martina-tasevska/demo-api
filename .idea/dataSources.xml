@@ -7,5 +7,29 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Rails demo-api: production" uuid="99a5699b-680a-44d1-b474-d696ca77886b">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/db/production.postgresql</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails demo-api: development" uuid="22985bef-bf0f-4669-b0ed-28781ed117be">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/db/development.postgresql</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails demo-api: test" uuid="878e4ae9-9b6a-4e57-a996-70bc273204b0">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/db/test.postgresql</jdbc-url>
+    </data-source>
   </component>
 </project>
