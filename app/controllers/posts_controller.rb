@@ -9,12 +9,17 @@ class PostsController < ApiController
     end
   end
 
-  api :GET, '/users/:user_id/posts', "List all posts created by user with given id"
+  api :GET, '/users/:user_id/posts', "List all posts created by user with given id or all posts if id doesn't exist"
   returns :array_of => :post, :desc => "List of posts"
   def index
+    if(params.has_key? "user_id")
     @user = User.find(params[:user_id])
-    @posts = @user.posts.order('created_at DESC')
+    @posts = @user.posts.order('created_at DESC').page(params[:page])
     render json: { status: 'SUCCESS', messsage:'Loaded posts', data: @posts }
+    else
+      @posts = Post.all.order('created_at DESC').page(params[:page])
+      render json: { status: 'SUCCESS', messsage:'Loaded posts', data: @posts }
+    end
   end
 
   api :GET, ' /users/:user_id/posts/:id', "Display a specific post with given id"

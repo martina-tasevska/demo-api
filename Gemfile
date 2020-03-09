@@ -9,10 +9,14 @@ gem 'activeadmin'
 gem 'carrierwave', '~> 2.0'
 gem 'sidekiq'
 gem 'faker'
+gem 'doorkeeper'
+gem 'kaminari'
+gem 'httparty'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use Puma as the app server
 gem 'devise'
 gem 'puma', '~> 3.7'

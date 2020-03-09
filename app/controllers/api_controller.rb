@@ -9,10 +9,4 @@ class ApiController < ActionController::API
     end
   end
 
-  api :GET, '/', "List all posts"
-  returns :array_of => :post, :desc => "List of posts"
-  def index
-    @posts = Post.all
-    render json: { status: 'SUCCESS', messsage:'Loaded posts', data: @posts }
-  end
 end
