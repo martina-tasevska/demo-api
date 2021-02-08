@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'activeadmin'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'sidekiq'
 gem 'faker'
 gem 'doorkeeper'
