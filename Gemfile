@@ -19,7 +19,7 @@ gem 'rails', '~> 5.1.7'
 
 # Use Puma as the app server
 gem 'devise'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 gem 'apipie-rails'
 gem "pundit"
 
